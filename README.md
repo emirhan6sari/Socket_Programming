@@ -30,4 +30,34 @@ and the patient will be disconnected. Additionally, the server screen should sho
 has left.”
 
 7. When all patients in the system are finished, all doctors should be informed and then all connections 
-should be cut off. If there is no patient in the system, the doctor's screen should display the message “There is no patient waiting.” 
+should be cut off. If there is no patient in the system, the doctor's screen should display the message “There is no patient waiting.”
+
+
+Hastane randevu uygulaması
+1. Program bir sunucu ve birden fazla istemci içerecektir. İlk olarak sunucu 
+(parçası) başlatılacak, sunucu kısmı tüm soketlerden gelebilecek TCP ve UDP mesajlarını dinleyecektir.
+
+2. Sonra istemci tarafı her çalıştırıldığında sunucuya yeni bir bağlantı kuracak.
+
+3. İki farklı tipte istemci olacak. İlk bağlanan 2 istemci sırasıyla “Doktor1” ve “Doktor2” olarak adlandırılacak. Daha sonra bağlı istemciler sırasıyla “Hasta1”, “Hasta2” ve “Hasta3” olarak adlandırılmalıdır. Eğer sistemde doktor yoksa, hasta olanlar sisteme bağlanamazlar. 
+Yeni bir kullanıcı bağlandığında, sunucu, sisteme bağlı olan doktor veya doktorların ekranında, bağlanan kullanıcının kullanıcı adını ve bağlantı yöntemini göstermelidir. 
+“Hoşgeldiniz” mesajı bağlanan istemci ekranında (yani hastanın ekranında) görünmelidir.
+
+4. Her doktorun önceden belirlenmiş randevuları olan hastaları olsa da randevusuz gelen hastalar da vardır. Herhangi bir doktor hasta çağırma fonksiyonunu (ilgili doktor 
+ekrana “Hasta Kabul” yazdığınızda ilgili fonksiyonun üzeri çizilmelidir) hem sunucu hem de hasta çağırdığında yapabilir. 
+Bu işlem ekranda “HastaX -> DoktorY” olarak görüntülenmelidir. İlgili hasta doktoru kabul eder 
+olduğunda bir işlev çağrılmalı ve bu işlevle hem hasta hem de doktor ekranda 
+Bilgiler ”HastaX doktor randevusunu kabul etti" şeklinde gösterilmelidir. Hastanın randevusu 10 
+ Hasta 10 saniye içinde kabul etmezse, bir sonraki hasta otomatik olarak doktor tarafından çağrılmalıdır.
+
+5. Herhangi bir doktorun randevulu hastaları bittiğinde, çağrı fonksiyonu otomatik olarak 
+veya manuel çağrı durumunda, en fazla sayıda kalan hastası olan doktorun sıradaki hastası çağrılır. Bu sırada, çağrılan hastanın doktoru ile çağrıyı yapan doktorun aynı olması gerekir. Hastalar sırasıyla Doktor1 ve Doktor2'ye vardıklarında 
+aktarılabilir.
+
+6. Herhangi bir doktor yeni bir hastayı aradığında, doktorun eski hastasının ekranında “Geçmiş 
+yazısı belirecek ve hasta bağlantısı kesilecektir. Ayrıca, sunucu ekranında “HastaX 
+gitti” mesajı görünmelidir.
+
+
+7. Sistemdeki tüm hastalar işlerini bitirdiğinde, tüm doktorlar bilgilendirilmeli ve tüm bağlantılar kesilmelidir. Sistemde hasta yoksa, doktorun ekranında “Bekleyen hasta yok” mesajı görüntülenmelidir.
+
